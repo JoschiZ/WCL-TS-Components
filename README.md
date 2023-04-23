@@ -48,6 +48,11 @@ function iAmAImport() {
 iAmAImport()
 ```
 
+### Limitations
+Because of how the transpiled code is bundled, you cannot use `import {xy as name}` statements.
+
+You also need to consider all symbols as global.
+
 ___
 ### Comments
 By default, typescript is set up to keep comments.
@@ -73,10 +78,6 @@ You can turn off comments altogether by setting `removeComments` to `false` in t
 
 ___
 ### Additional Post Processing
-Note that the included [main.ts](/src/main.ts) file declares `getComponent` as a `constant`.
-This const is just present to appease typescript and is removed by gulp.
-You can delete it yourself without any side effects.
-
 Gulp sometimes produces a large chunk of empty lines between your imports and the main code.
 Because of that it is set up to replace 5 consecutive `\n` with a single new line. 
 You can deactivate this behaviour by deleting `.pipe(replace("\n\n\n\n\n", "\n"))` from [gulpfile.js](/gulpfile.js).
