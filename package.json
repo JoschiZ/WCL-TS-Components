@@ -1,0 +1,24 @@
+{
+  "name": "rpglogsdocsscraper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "gulp": "gulp main"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-replace": "^1.1.4",
+    "gulp-strip-import-export": "^1.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "typescript": "^5.0.4"
+  },
+  "dependencies": {
+    "gulp-resolve-dependencies": "^4.1.0"
+  }
+}
