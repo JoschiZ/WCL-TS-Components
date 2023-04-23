@@ -24,5 +24,6 @@ gulp.task("main", function() {
     .pipe(replace(/\/\/\/\s*<reference.*>/g, '')) // Deletes all triple slash references and allows to keep normal comments
     .pipe(replace(/\/\/REMOVE\s*.*/g, "")) // Removes all comments starting with REMOVE
     .pipe(replace("\n\n\n\n\n", "\n")) // This replaces a large amount of white space that is always present
+      .pipe(replace("default ", ""))
     .pipe(gulp.dest("dist/"));
 });

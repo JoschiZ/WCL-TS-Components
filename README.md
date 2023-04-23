@@ -19,7 +19,8 @@ You can copy and paste that code straight into your component.
 ___
 ### Imports
 Gulp is used to concatenate all your different typescript files into a single 
-JavaScript file. This allows you to use `import` and `export` statements as usual.
+JavaScript file. This allows you to use `import` and `export` statements with some [limitations](#limitations).
+For example you cannot use `import as`. 
 
 For this to work you need to include a triple slash reference to each imported file in your TS file.
 ```ts
@@ -55,7 +56,7 @@ You also need to consider all symbols as global.
 
 ___
 ### Comments
-By default, typescript is set up to keep comments.
+By default, TypeScript in this project is set up to keep comments.
 
 However, you can make comments that are not present in the resulting JS by starting them with `//REMOVE`.
 Gulp will then remove the complete line after it was transpiled to JS.
@@ -95,9 +96,9 @@ import type {ChartComponentProps} from "../RpgLogs";
 For details how this file is generated or to report bugs head over to the [RpgLogsDocsGenerator repository](https://github.com/JoschiGrey/RpgLogsDocs-Generator)
 ___
 ## Additional Resources
-- More help regarding components can be found in the [help articles](https://articles.warcraftlogs.com/help/what-are-report-components)
-- Report components are currently in their closed alpha you can sign up here https://forms.gle/oFcWCMbgqDK2j2e69
-- You can get more help regarding components on the [Warcraft Logs Discord](https://discord.gg/5ebPJSsy5y)
+- More help regarding components can be found in the [help articles](https://articles.warcraftlogs.com/help/what-are-report-components).
+- Report components are currently in their closed alpha you can sign up here https://forms.gle/oFcWCMbgqDK2j2e69.
+- You can get more help regarding components on the [Warcraft Logs Discord](https://discord.gg/5ebPJSsy5y).
 
 
 ### Note that this project is not affiliated with the WCL Team!
