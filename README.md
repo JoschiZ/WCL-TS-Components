@@ -91,7 +91,7 @@ You can import them directly in your TS code
 import type {ChartComponentProps} from "../RpgLogs";
 ```
 
-For details how this file is generated or to report bugs head over to the [RpgLogsDocsGenerator repository](https://en.wikipedia.org/wiki/HTTP_404)
+For details how this file is generated or to report bugs head over to the [RpgLogsDocsGenerator repository](https://github.com/JoschiGrey/RpgLogsDocs-Generator)
 ___
 ## Additional Resources
 - More help regarding components can be found in the [help articles](https://articles.warcraftlogs.com/help/what-are-report-components)
