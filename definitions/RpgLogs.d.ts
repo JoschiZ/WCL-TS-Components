@@ -1782,7 +1782,7 @@ export namespace Highcharts {
         // eslint-disable-next-line @typescript-eslint/no-empty-interface
     interface Html extends String {} // see https://www.highcharts.com/docs/chart-concepts/security
     type Css = NYI;
-    type GradientColorObject = { stops: Array<[number, color]> } & (
+    type GradientColorObject = { stops: Array<[number, Color]> } & (
         | {
         linearGradient: { x1: number; x2: number; y1: number; y2: number };
     }
