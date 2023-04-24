@@ -37,7 +37,7 @@ import {iAmAImport} from "./someImport"
 iAmAImport()
 ```
 It does not matter, where in your code the /// reference is done and all
-triple slash references will be removed by gulp and this not be present
+triple slash references will be removed by gulp and will not be present
 in the resulting JS.
 
 The `.ts` from above will transpile into the following.
@@ -84,16 +84,14 @@ Because of that it is set up to replace 5 consecutive `\n` with a single new lin
 You can deactivate this behaviour by deleting `.pipe(replace("\n\n\n\n\n", "\n"))` from [gulpfile.js](/gulpfile.js).
 ___
 ### Types
-Typings for the `RpgLogs` API are provided in [RpgLogs.d.ts](RpgLogs.d.ts).
-Note that this file is auto generated from the [official documentation](https://www.warcraftlogs.com/scripting-api-docs/warcraft/index.html),
-but is not directly provided by WCL. This means that it is ***very*** likely that it contains errors or is out of date at some point.
+Typings for the `RpgLogs` API are provided in [RpgLogs.d.ts](definitions/RpgLogs.d.ts).
+This file is a concatenation of the original definition files `chart.d.ts`, `warcraft.d.ts` and `index.d.ts`, provided by the WCL team on [Discord](https://cdn.discordapp.com/attachments/1042093628778090527/1100066150299226132/reportComponents.zip).
+
 
 You can import them directly in your TS code 
 ```ts
-import type {ChartComponentProps} from "../RpgLogs";
+import {RpgLogs} from "../definitions/RpgLogs";
 ```
-
-For details how this file is generated or to report bugs head over to the [RpgLogsDocsGenerator repository](https://github.com/JoschiGrey/RpgLogsDocs-Generator)
 ___
 ## Additional Resources
 - More help regarding components can be found in the [help articles](https://articles.warcraftlogs.com/help/what-are-report-components).

@@ -1,14 +1,14 @@
 {
-  "name": "rpglogsdocsscraper",
-  "version": "1.0.0",
-  "description": "",
+  "name": "wcl-report-component-ts-template",
+  "version": "1.1.0",
+  "description": "This is a template project, that allows you to write Warcraft Logs Report Components using TypeScript. ",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "gulp": "gulp main"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["template, typescript, wow, warcraftlogs"],
+  "author": "Joschi-Grey",
   "license": "GPL-3.0-or-later",
   "devDependencies": {
     "gulp": "^4.0.2",
