@@ -8,7 +8,7 @@ This project is **not** affiliated with the Warcraft Logs Team!
 Clone this repository and run npm install to fetch all the dependencies
 >npm install
 
-You can create components in the [components folder](components). Each `.ts` file in that folder will 
+You can create components in the [components' folder](components). Each `.ts` file in that folder will 
 be transpiled into its own standalone component. This allows you to easily share code between your different projects.
 
 To transpile your code run
@@ -20,6 +20,22 @@ Beside the transpiled code a second lzstring.txt file is generated for each comp
 This contains Warcraft Logs [import](#import-string) string. 
 
 ___
+### Banner
+This template includes an implementation for the webpack Banner Plugin.
+You find the banner settings in the [webpack config](webpack.config.js) under `plugins`.
+
+```ts
+        new webpack.BannerPlugin({
+            banner: "Created using the WCL-TS-Components Template https://github.com/JoschiGrey/WCL-TS-Components \n",
+            include: /-*\.js/
+        })
+```
+
+You can easily customize this banner by changing the `banner:` property or remove it completely, by just deleting this part of the config.
+This is supposed to give you an easy way, to share a link to your components' repository.
+That way other people can take a look at the human-readable version and maybe even contribute to your work.
+
+___
 ### Imports
 Webpack will take care of all your imports and insert the needed code into the resulting components.
 Unlike the previous version of this project, you can use `exports` and `imports` without limitations.
@@ -29,7 +45,7 @@ ___
 Webpacks file watcher will react to all your changes and retranspile your code into components on the fly.
 This will also update the `.lzstring` files.
 
-Currently the watcher cannot react to new files being created in [component](components) and you will have to rerun
+Currently, the watcher cannot react to new files being created in [component,](components) and you will have to rerun
 webpack, whenever you want to work on a new component.
 
 The file watcher can be turned off by setting `watch` to `false` in the [webpack config](webpack.config.js).

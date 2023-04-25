@@ -2,6 +2,8 @@ const path = require('path');
 const fs = require("fs");
 const crypto = require("crypto");
 const LZString = require("lz-string");
+const webpack = require("webpack")
+const TerserPlugin = require("terser-webpack-plugin");
 
 const getUUID = () =>
     (String(1e7) + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
@@ -60,7 +62,10 @@ module.exports = {
         preferRelative: true
     },
     optimization: {
-        minimize: true
+        minimize: true,
+        minimizer: [new TerserPlugin({
+            extractComments: false
+        })]
     },
     output: {
         filename: '[name].component.js',
@@ -71,6 +76,10 @@ module.exports = {
         aggregateTimeout: 400
     },
     plugins: [
-        new CompressToLZPlugin()
+        new CompressToLZPlugin(),
+        new webpack.BannerPlugin({
+            banner: "Created using the WCL-TS-Components Template https://github.com/JoschiGrey/WCL-TS-Components \n",
+            include: /-*\.js/
+        })
     ]
 };
