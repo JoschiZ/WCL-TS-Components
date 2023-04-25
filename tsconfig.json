@@ -1,17 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "rootDirs": [
-      "src",
-    ],
-    "allowJs": false,
     "sourceMap": false,
-    "outDir": "dist",
-    "removeComments": false,
-    "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
-    "noEmitHelpers": true,
     "strict": true,
-    "skipLibCheck": true
+    "strictNullChecks": true
   }
 }

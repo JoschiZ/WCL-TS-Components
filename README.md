@@ -8,80 +8,43 @@ This project is **not** affiliated with the Warcraft Logs Team!
 Clone this repository and run npm install to fetch all the dependencies
 >npm install
 
-Write your Typescript code in [src/main.ts](src/main.ts).
+You can create components in the [components folder](components). Each `.ts` file in that folder will 
+be transpiled into its own standalone component. This allows you to easily share code between your different projects.
 
 To transpile your code run
->npm run gulp
+>npx webpack
 
-The resulting code can be found under [dist/main.js](dist/main.js), which will be generated after running gulp.
-You can copy and paste that code straight into your component.
+The components can be found in the [dist folder](dist), which will be generated after running webpack.
+By default, the [file watcher](#watcher) ist activated, that will automatically re-transpile your components on changes.
+Beside the transpiled code a second lzstring.txt file is generated for each component. 
+This contains Warcraft Logs [import](#import-string) string. 
 
 ___
 ### Imports
-Gulp is used to concatenate all your different typescript files into a single 
-JavaScript file. This allows you to use `import` and `export` statements with some [limitations](#limitations).
-For example you cannot use `import as`. 
-
-For this to work you need to include a triple slash reference to each imported file in your TS file.
-```ts
-// someImport.ts
-export function iAmAImport(): string {
-    return "I don't do anything though"
-}
-```
-```ts
-// main.ts
-import {iAmAImport} from "./someImport"
-/// <reference path="./someImport.ts" />
-
-iAmAImport()
-```
-It does not matter, where in your code the /// reference is done and all
-triple slash references will be removed by gulp and will not be present
-in the resulting JS.
-
-The `.ts` from above will transpile into the following.
-```js
-function iAmAImport() {
-    return "I don't do anything though";
-}
-
-iAmAImport()
-```
-
-### Limitations
-Because of how the transpiled code is bundled, you cannot use `import {xy as name}` statements.
-
-You also need to consider all symbols as global.
+Webpack will take care of all your imports and insert the needed code into the resulting components.
+Unlike the previous version of this project, you can use `exports` and `imports` without limitations.
 
 ___
-### Comments
-By default, TypeScript in this project is set up to keep comments.
+### Watcher
+Webpacks file watcher will react to all your changes and retranspile your code into components on the fly.
+This will also update the `.lzstring` files.
 
-However, you can make comments that are not present in the resulting JS by starting them with `//REMOVE`.
-Gulp will then remove the complete line after it was transpiled to JS.
+Currently the watcher cannot react to new files being created in [component](components) and you will have to rerun
+webpack, whenever you want to work on a new component.
 
-```ts
-// TS Input
-//REMOVE Actually this function does return a string... that's not nothing I guess.
-export function iAmAImport(): string {
-    return "I don't do anything though"
-}
-```
-```js
-// JS Output
-function iAmAImport() {
-    return "I don't do anything though"
-}
-```
-
-You can turn off comments altogether by setting `removeComments` to `false` in the [tsconfig.json](/tsconfig.json)
+The file watcher can be turned off by setting `watch` to `false` in the [webpack config](webpack.config.js).
 
 ___
-### Additional Post Processing
-Gulp sometimes produces a large chunk of empty lines between your imports and the main code.
-Because of that it is set up to replace 5 consecutive `\n` with a single new line. 
-You can deactivate this behaviour by deleting `.pipe(replace("\n\n\n\n\n", "\n"))` from [gulpfile.js](/gulpfile.js).
+### Import String
+Warcraft Logs uses base64 encoded LZString of an object that represents the component as a whole as exports / imports.
+This is directly generated for each of you components using the [CompressToLZPlugin](webpack.config.js).
+
+The height `h` and width `w` components are set to 1 and 2 respectively, which results in a rectangular component.
+This is the same size as a newly created component on WCL.
+
+Currently, it is not possible to define the width and height of your different components individually.
+
+
 ___
 ### Types
 Typings for the `RpgLogs` API are provided in [RpgLogs.d.ts](definitions/RpgLogs.d.ts).
@@ -90,8 +53,18 @@ This file is a concatenation of the original definition files `chart.d.ts`, `war
 
 You can import them directly in your TS code 
 ```ts
-import {RpgLogs} from "../definitions/RpgLogs";
+import type {RpgLogs} from "../definitions/RpgLogs";
 ```
+
+___
+### Limitations
+You will note, that the example component looks like this 
+```ts
+(global as any).getComponent = () => {
+...}
+```
+this `global` is currently needed or else the webpack export won't be compatible with Warcraft Logs.
+
 ___
 ## Additional Resources
 - More help regarding components can be found in the [help articles](https://articles.warcraftlogs.com/help/what-are-report-components).
@@ -100,3 +73,10 @@ ___
 
 
 ### Note that this project is not affiliated with the WCL Team!
+
+___
+## Gulp Template
+The first version of this template was moved to a [protected branch](https://github.com/JoschiGrey/WCL-TS-Components/tree/v1-gulp-based).
+Gulp has the distinct advantage of generating human-readable code, because it just concatenated the needed files into one.
+This had the big disadvantage of not allowing symbols with the same name being imported from different files.
+It also necessitated the user to add triple slash references to each file they wanted to use.
