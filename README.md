@@ -5,7 +5,10 @@ in Typescript and transpile it directly to JavaScript that can be copied and pas
 This project is **not** affiliated with the Warcraft Logs Team!
 
 ## How to use
-Clone this repository and run npm install to fetch all the dependencies
+Clone this repository or create your own repository directly from the [template](https://github.com/JoschiGrey/WCL-TS-Components/generate).
+>git clone https://github.com/JoschiGrey/WCL-TS-Components
+
+Then run npm install to fetch all the dependencies.
 >npm install
 
 You can create components in the [components' folder](components). Each `.ts` file in that folder will 
@@ -90,9 +93,11 @@ ___
 
 ### Note that this project is not affiliated with the WCL Team!
 
-___
 ## Gulp Template
 The first version of this template was moved to a [protected branch](https://github.com/JoschiGrey/WCL-TS-Components/tree/v1-gulp-based).
 Gulp has the distinct advantage of generating human-readable code, because it just concatenated the needed files into one.
 This had the big disadvantage of not allowing symbols with the same name being imported from different files.
 It also necessitated the user to add triple slash references to each file they wanted to use.
+
+To clone it directly you can use this command.
+>git clone --single-branch --branch v1-gulp-based https://github.com/JoschiGrey/WCL-TS-Components
