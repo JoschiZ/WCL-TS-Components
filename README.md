@@ -63,6 +63,14 @@ This is the same size as a newly created component on WCL.
 
 Currently, it is not possible to define the width and height of your different components individually.
 
+___
+### Source Code
+By default, your full LZString compressed, Base64 encoded typescript source code is appended as comments to your export.
+You can choose to not compress it by setting `new ClearSourcePlugin({compress: true})` of the [ClearSourcePlugin](webpack.config.js)
+to false in the webpack config.
+You can also choose to omit your source by deleting the `ClearSourcePlugin` from the list of plugins.
+This may be advisable for projects with large imports, as the content of the full file and not just the imported symbols are imported.
+
 
 ___
 ### Types

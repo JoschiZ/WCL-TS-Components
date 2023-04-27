@@ -1,3 +1,5 @@
+import {anotherImport} from "./anotherImport";
+
 export function iAmAImport(){
-    return "I don't do anything though"
+    return anotherImport()
 }
