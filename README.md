@@ -23,6 +23,27 @@ Beside the transpiled code a second lzstring.txt file is generated for each comp
 This contains Warcraft Logs [import](#import-string) string. 
 
 ___
+### Template Config
+You can configure the included plugins directly in the [template config](template.config.js). 
+Omitting a property of `TemplateConfig.plugins` or assigning a falsy value will deactivate the plugin all together.
+
+You can also define the width and height of your components in the config like this
+
+```js
+{
+    components: {
+        exampleComponent: {
+            w: 2,
+            h: 2
+        }
+    }
+}
+```
+
+Setting `componentName.i` will assign this as a static id instead of creating a new random one each time the export string is generated.
+
+
+___
 ### Banner
 This template includes an implementation for the webpack Banner Plugin.
 You find the banner settings in the [webpack config](webpack.config.js) under `plugins`.
@@ -56,21 +77,17 @@ The file watcher can be turned off by setting `watch` to `false` in the [webpack
 ___
 ### Import String
 Warcraft Logs uses base64 encoded LZString of an object that represents the component as a whole as exports / imports.
-This is directly generated for each of you components using the [CompressToLZPlugin](webpack.config.js).
+This is directly generated for each of you components using the [CreateExportStringPlugin](plugins/CreateExportStringPlugin.js).
 
 The height `h` and width `w` components are set to 1 and 2 respectively, which results in a rectangular component.
 This is the same size as a newly created component on WCL.
 
-Currently, it is not possible to define the width and height of your different components individually.
+You can set static ids and individual width and heights in the [template config](template.config.js)
 
 ___
 ### Source Code
 By default, your full LZString compressed, Base64 encoded typescript source code is appended as comments to your export.
-You can choose to not compress it by setting `new ClearSourcePlugin({compress: true})` of the [ClearSourcePlugin](webpack.config.js)
-to false in the webpack config.
-You can also choose to omit your source by deleting the `ClearSourcePlugin` from the list of plugins.
-This may be advisable for projects with large imports, as the content of the full file and not just the imported symbols are imported.
-
+You can choose not to compress your source, by setting `TemplateConfig.pligins.clearSource.compress` to `false`.
 
 ___
 ### Types

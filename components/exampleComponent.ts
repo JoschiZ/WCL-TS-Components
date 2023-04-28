@@ -1,6 +1,6 @@
 import {iAmAImport} from "../util/someImport";
 import type {RpgLogs} from "../definitions/RpgLogs";
-import {sum} from "../util/anotherImport";
+
 
 
 (global as any).getComponent = () => {
@@ -9,7 +9,7 @@ import {sum} from "../util/anotherImport";
   return {
     component: 'EnhancedMarkdown',
     props: {
-      content: iAmAImport() + "" + sum(1, 2)
+      content: iAmAImport()
     }
   } as RpgLogs.EnhancedMarkdownComponent
 }
