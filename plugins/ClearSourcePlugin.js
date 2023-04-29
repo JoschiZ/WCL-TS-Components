@@ -1,8 +1,11 @@
-const path = require('path');
-const fs = require("fs");
-const LZString = require("lz-string");
-const { Compilation } = require("webpack");
-const { ConcatSource } = require("webpack-sources");
+import path from "path";
+import fs from "fs";
+import LZString from "lz-string";
+import webpack from "webpack";
+const {Compilation} = webpack
+import ConcatSource from "webpack-sources/lib/ConcatSource.js";
+import * as url from 'url';
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 
 /**
@@ -29,7 +32,7 @@ class ClearSourcePlugin {
 
     /**
      * Apply the plugin
-     * @param {Compiler} compiler the compiler instance
+     * @param {import("webpack/types").Compiler} compiler the compiler instance
      * @returns {void}
      */
     apply(compiler){
@@ -100,4 +103,4 @@ class ClearSourcePlugin {
     }
 }
 
-module.exports = ClearSourcePlugin
+export default ClearSourcePlugin
