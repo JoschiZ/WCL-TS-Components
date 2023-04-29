@@ -4,9 +4,9 @@ import LZString from "lz-string";
 import webpack from "webpack";
 const {Compilation} = webpack
 import ConcatSource from "webpack-sources/lib/ConcatSource.js";
-import * as url from 'url';
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+import * as url from "url";
 
+const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 /**
  * This Plugin will attach the full source code to your component as a comment.
@@ -90,8 +90,7 @@ class ClearSourcePlugin {
                                 "\n /*\n" + JSON.stringify(comments) + "\n*/"
 
                             if (comments){
-                                const newSource = new ConcatSource(old,commentString )
-                                return newSource
+                                return  new ConcatSource(old,commentString )
                             }
                             return old
 

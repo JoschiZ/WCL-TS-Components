@@ -1,3 +1,5 @@
+// noinspection JSUnusedGlobalSymbols
+
 declare global {
     /**
      * The current API version. Used to see if a report component is out of date.
@@ -2033,7 +2035,7 @@ export namespace Highcharts {
             }>;
 
         type KnownSeries = Scatter | Line | Histogram | Bar | BoxPlot;
-        type UnknownSeries = BaseSeries<unknown>;
+        type UnknownSeries = BaseSeries<any>;
 
         /**
          * @see https://api.highcharts.com/highcharts/series
@@ -2198,7 +2200,6 @@ export namespace Highcharts {
         yAxis?: AxisOptions;
         zAxis?: AxisOptions;
         colorAxis?: NYI; // does not really share axis options with the x/y/z axes
-        colors?: Color[];
         chart?: ChartOptions;
         annotations?: NYI[];
         legend?: NYI;
