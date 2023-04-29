@@ -83,8 +83,8 @@ class ClearSourcePlugin {
                                 comments[fileName] = this.#getSourceString(dependency)
                             }
                             let commentString = this.#compress ?
-                                "\n /* \n" + LZString.compressToBase64(JSON.stringify(comments))  + "\n*/" :
-                                "\n /* \n" + JSON.stringify(comments) + "\n*/"
+                                "\n /*Source Code LZString compressed, Base64 encoded \n" + LZString.compressToBase64(JSON.stringify(comments))  + "\n*/" :
+                                "\n /*\n" + JSON.stringify(comments) + "\n*/"
 
                             if (comments){
                                 const newSource = new ConcatSource(old,commentString )
