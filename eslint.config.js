@@ -1,8 +1,8 @@
-import ts from '@typescript-eslint/eslint-plugin';
-import tsParser from '@typescript-eslint/parser';
-import eslintJS from "@eslint/js"
+const ts = require('@typescript-eslint/eslint-plugin');
+const tsParser = require('@typescript-eslint/parser');
+const eslintJS = require("@eslint/js")
 
-export default [
+module.exports = [
   {
     files: ["**/*.js"],
     ignores: ["dist/**/*", "node_modules/*/*", "**/*/eslint.config.js"],
@@ -12,7 +12,8 @@ export default [
     languageOptions: {
       globals: {
         "URL": "readonly"
-      }
+      },
+      sourceType: "commonjs"
     }
   },
   {

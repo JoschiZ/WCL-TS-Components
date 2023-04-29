@@ -4,6 +4,6 @@
     "sourceMap": false,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
   }
 }

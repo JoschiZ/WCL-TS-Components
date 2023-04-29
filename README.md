@@ -101,15 +101,6 @@ import type {RpgLogs} from "../definitions/RpgLogs";
 ```
 
 ___
-### Limitations
-You will note, that the example component looks like this 
-```ts
-(global as any).getComponent = () => {
-...}
-```
-this `global` is currently needed or else the webpack export won't be compatible with Warcraft Logs.
-
-___
 ## Additional Resources
 - More help regarding components can be found in the [help articles](https://articles.warcraftlogs.com/help/what-are-report-components).
 - Report components are currently in their closed alpha you can sign up here https://forms.gle/oFcWCMbgqDK2j2e69.

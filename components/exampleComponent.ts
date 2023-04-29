@@ -3,9 +3,7 @@ import type {RpgLogs} from "../definitions/RpgLogs";
 
 
 
-(global as any).getComponent = () => {
-  let IHaveAType: RpgLogs.ActorType
-
+export default getComponent = () => {
   return {
     component: 'EnhancedMarkdown',
     props: {
