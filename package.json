@@ -3,7 +3,6 @@
   "version": "2.0.0",
   "description": "This is a template project, that allows you to write Warcraft Logs Report Components using TypeScript. ",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

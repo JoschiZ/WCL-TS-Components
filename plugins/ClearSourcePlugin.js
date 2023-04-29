@@ -1,12 +1,10 @@
-import path from "path";
-import fs from "fs";
-import LZString from "lz-string";
-import webpack from "webpack";
+const path = require( "path");
+const fs = require("fs");
+const LZString = require("lz-string")
+const webpack = require("webpack");
 const {Compilation} = webpack
-import ConcatSource from "webpack-sources/lib/ConcatSource.js";
-import * as url from "url";
+const ConcatSource = require("webpack-sources/lib/ConcatSource.js")
 
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 /**
  * This Plugin will attach the full source code to your component as a comment.
@@ -102,4 +100,4 @@ class ClearSourcePlugin {
     }
 }
 
-export default ClearSourcePlugin
+module.exports = ClearSourcePlugin

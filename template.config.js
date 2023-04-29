@@ -1,5 +1,5 @@
 /**@type {import("definitions/template").TemplateConfig} config*/
-export default {
+module.exports = {
     plugins: {
         clearSource: {
             compress: true

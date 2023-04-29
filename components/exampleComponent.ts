@@ -4,12 +4,12 @@ import type {RpgLogs} from "../definitions/RpgLogs";
 
 
 (global as any).getComponent = () => {
-  const firstName = reportGroup.actors[0].name
+  let IHaveAType: RpgLogs.ActorType
 
   return {
     component: 'EnhancedMarkdown',
     props: {
-      content: iAmAImport() + firstName
+      content: iAmAImport()
     }
   } as RpgLogs.EnhancedMarkdownComponent
 }

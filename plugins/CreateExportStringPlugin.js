@@ -1,13 +1,8 @@
-import LZString from "lz-string";
-
-import fs from "fs";
-
-import path from "path";
-
-import crypto from "crypto";
-
-import templateConfig from "../template.config.js";
-
+const LZString = require("lz-string");
+const fs = require("fs");
+const path = require("path");
+const crypto = require("crypto");
+const templateConfig = require("../template.config")
 
 const getUUID = () =>
     (String(1e7) + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, (c) =>
@@ -36,4 +31,4 @@ class CreateExportStringPlugin {
     }
 }
 
-export default CreateExportStringPlugin
+module.exports = CreateExportStringPlugin

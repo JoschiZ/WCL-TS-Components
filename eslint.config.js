@@ -7,7 +7,12 @@ export default [
     files: ["**/*.js"],
     ignores: ["dist/**/*", "node_modules/*/*", "**/*/eslint.config.js"],
     rules: {
-      ...eslintJS.configs.recommended.rules
+      ...eslintJS.configs.recommended.rules,
+    },
+    languageOptions: {
+      globals: {
+        "URL": "readonly"
+      }
     }
   },
   {

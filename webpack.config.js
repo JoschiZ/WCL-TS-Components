@@ -1,14 +1,11 @@
-import path from "path";
-import fs from "fs";
-import webpack from "webpack";
-import TerserPlugin from "terser-webpack-plugin";
-import ClearSourcePlugin from "./plugins/ClearSourcePlugin.js";
-import CreateExportStringPlugin from "./plugins/CreateExportStringPlugin.js";
-import templateConfig from "./template.config.js";
+const path = require('path');
+const fs = require("fs");
+const webpack = require("webpack")
+const TerserPlugin = require("terser-webpack-plugin");
+const ClearSourcePlugin = require("./plugins/ClearSourcePlugin")
+const CreateExportStringPlugin = require("./plugins/CreateExportStringPlugin")
+const templateConfig = require("./template.config")
 
-import * as url from 'url';
-
-const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
 
 function buildEntryObject(){
     const basePath = path.join(__dirname, "components")
@@ -41,7 +38,7 @@ function createPluginArray(){
     return plugins
 }
 
-export default {
+module.exports = {
     entry: buildEntryObject(),
     mode: "production",
     module: {
