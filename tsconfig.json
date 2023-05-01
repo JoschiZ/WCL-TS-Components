@@ -5,5 +5,6 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "strictNullChecks": true,
+    "moduleResolution": "NodeNext"
   }
 }

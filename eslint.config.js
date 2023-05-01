@@ -11,7 +11,9 @@ module.exports = [
     },
     languageOptions: {
       globals: {
-        "URL": "readonly"
+        "URL": "readonly",
+        "__dirname": "readonly",
+        "__filename": "readonly"
       },
       sourceType: "commonjs"
     }
@@ -33,7 +35,14 @@ module.exports = [
     },
     rules: {
       ...ts.configs['eslint-recommended'].rules,
-      ...ts.configs['recommended'].rules
+      ...ts.configs['recommended'].rules,
+      '@typescript-eslint/ban-ts-comment':[
+          "error",
+        {
+          "ts-expect-error": "allow-with-description",
+          minimumDescriptionLength: 5
+        }
+      ]
     }
   }
 
