@@ -44,6 +44,16 @@ module.exports = [
         }
       ]
     }
+  },
+  {
+    files: ["testing/**/*", "plugins/**/*"],
+    languageOptions: {
+      globals: {
+        "console": "readonly",
+        "process": "readonly",
+        "TextDecoder": "readonly"
+      }
+    }
   }
 
 ]

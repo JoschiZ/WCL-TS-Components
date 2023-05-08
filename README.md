@@ -30,7 +30,7 @@ Omitting a property of `TemplateConfig.plugins` or assigning a falsy value will 
 You can also define the width and height of your components in the config like this
 
 ```js
-{
+module.exports = {
     components: {
         exampleComponent: {
             w: 2,
@@ -49,10 +49,10 @@ This template includes an implementation for the webpack Banner Plugin.
 You find the banner settings in the [webpack config](webpack.config.js) under `plugins`.
 
 ```ts
-        new webpack.BannerPlugin({
-            banner: "Created using the WCL-TS-Components Template https://github.com/JoschiGrey/WCL-TS-Components \n",
-            include: /-*\.js/
-        })
+new webpack.BannerPlugin({
+    banner: "Created using the WCL-TS-Components Template https://github.com/JoschiGrey/WCL-TS-Components \n",
+    include: /-*\.js/
+})
 ```
 
 You can easily customize this banner by changing the `banner:` property or remove it completely, by just deleting this part of the config.
@@ -99,6 +99,33 @@ You can import them directly in your TS code
 ```ts
 import type {RpgLogs} from "../definitions/RpgLogs";
 ```
+
+___
+### Testing (Experimental!)
+This template includes a AutoTestPlugin, which will use [puppeteer](https://pptr.dev/) to open a Log create a new empty component and paste your code in there.
+It then runs the component and prints the response to your console.
+This is fully compatible with the file Watcher.
+
+Because components are currently in closed preview you will have to log in to WCL.
+You can set up your credentials in a .env file ([see](.env.example)) to mostly automate that process.
+But you don't have to do that. 
+You need to set up your login method in the [template config](template.config.js) in any case.
+```js
+module.exports = {
+    plugins: {
+        autoTest: {
+            //Login using Battlenet Europe
+            loginMethod: "EUROPE",
+            components: {
+                // Run exampleComponent in the following url
+                exampleComponent: "https://www.warcraftlogs.com/reports/mTpzVhP4RfvD2FM8#fight=1&view=components"
+            }
+        }
+    }
+}
+```
+
+
 
 ___
 ## Additional Resources

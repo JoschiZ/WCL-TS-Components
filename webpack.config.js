@@ -6,6 +6,7 @@ const ClearSourcePlugin = require("./plugins/ClearSourcePlugin")
 const CreateExportStringPlugin = require("./plugins/CreateExportStringPlugin")
 const templateConfig = require("./template.config")
 const WCLCompatibilityPlugin = require("./plugins/WCLCompatibilityPlugin");
+const AutoTestPlugin = require("./plugins/AutoTestPlugin");
 
 
 function buildEntryObject(){
@@ -26,17 +27,23 @@ function createPluginArray(){
     if (templateConfig.plugins.clearSource){
         plugins.push(new ClearSourcePlugin(templateConfig.plugins.clearSource))
     }
-
+    if (templateConfig.plugins.autoTest){
+        plugins.push(new AutoTestPlugin(templateConfig.plugins.autoTest))
+    }
     if (templateConfig.plugins.exportString){
         plugins.push(new CreateExportStringPlugin())
     }
-
+    if (templateConfig.plugins.autoTest){
+        plugins.push(new CreateExportStringPlugin())
+    }
     plugins.push(new WCLCompatibilityPlugin())
 
     plugins.push(new webpack.BannerPlugin({
         banner: "Created using the WCL-TS-Components Template https://github.com/JoschiGrey/WCL-TS-Components \n",
         include: /-*\.js/
     }))
+
+
 
     return plugins
 }
