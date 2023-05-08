@@ -13,7 +13,6 @@ class CreateExportStringPlugin {
     apply(compiler) {
         compiler.hooks.assetEmitted.tap('CreateExportStringPlugin', (file, {outputPath, content}) => {
             const componentName = file.replace(".component.js", "")
-            /**@type {import("definitions/template").Component} component */
             const component = templateConfig.components[componentName] ?
                 templateConfig.components[componentName] :
                 {
