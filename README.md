@@ -4,6 +4,15 @@ in Typescript and transpile it directly to JavaScript that can be copied and pas
 
 This project is **not** affiliated with the Warcraft Logs Team!
 
+### Features
+- Full typescript support for your components
+- Easily share code between different components
+- Include your source directly as comments
+- Creates export strings for you to easily share components with others
+- File watcher for a faster write - test cycle
+- Automatically tests your component in WCL using Puppeteer
+
+
 ## How to use
 Clone this repository or create your own repository directly from the [template](https://github.com/JoschiGrey/WCL-TS-Components/generate).
 >git clone https://github.com/JoschiGrey/WCL-TS-Components

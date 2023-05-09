@@ -5,12 +5,7 @@ module.exports = {
             compress: true
         },
         exportString: true,
-        autoTest: {
-            loginMethod: "EUROPE",
-            components: {
-                exampleComponent: "https://www.warcraftlogs.com/reports/mTpzVhP4RfvD2FM8#fight=1&view=components"
-            }
-        }
+        autoTest: false
     },
     components: {
         exampleComponent: {
