@@ -84,13 +84,9 @@ class ClearSourcePlugin {
 
 
                             if(this.#dependencies[fileName]){
-                                console.log(fileName)
-                                console.log(this.#dependencies)
                                 const dependencies = Array.from(this.#dependencies[fileName])
-                                console.log(dependencies)
                                 while (dependencies.length > 0){
                                     const dependency = dependencies.pop()
-                                    console.log("Resolving " + dependency)
 
                                     if (comments[dependency]){
                                         continue
@@ -98,15 +94,11 @@ class ClearSourcePlugin {
 
                                     comments[dependency] = this.#getSourceString(dependency)
                                     const dependencyFileName = dependency.split("\\").pop().replace(".ts", "")
-                                    console.log(dependencyFileName)
                                     if (this.#dependencies[dependencyFileName]){
-                                        console.log("Adding deps")
-                                        console.log(this.#dependencies[dependencyFileName])
                                         for (const recDep of this.#dependencies[dependencyFileName]){
                                             dependencies.push(recDep)
                                         }
                                     }
-                                    console.log(dependencies)
                                 }
                             }
 
