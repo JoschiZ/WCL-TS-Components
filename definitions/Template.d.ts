@@ -24,8 +24,9 @@ interface AutoTestPluginOption {
 interface ClearSourcePluginOptions {
     /**
      * If true the source code will be LZString compressed and Base64Encoded
+     * @deprecated This option will be ignored and resulting output will always be compressed
      */
-    compress: boolean
+    compress?: boolean
 }
 
 export interface Component {

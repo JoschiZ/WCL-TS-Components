@@ -12,13 +12,14 @@ const ConcatSource = require("webpack-sources/lib/ConcatSource.js")
 class ClearSourcePlugin {
     #rawSources = {}
     #dependencies = {}
-    #compress
+    #options
+
 
     /**
      *  @param options {import("definitions/template").ClearSourcePluginOptions}
      */
-    constructor(options = {compress: false}) {
-        this.#compress = options.compress
+    constructor(options = {}) {
+        this.#options = options
     }
 
     #getSourceString(dependency) {
@@ -42,7 +43,7 @@ class ClearSourcePlugin {
 
 
             factory.hooks.beforeResolve.tap("ClearSourcePlugin", (resolve) => {
-                const filePath = path.resolve(__dirname, path.join(resolve.context, resolve.request))
+                const filePath = path.relative(path.join(__dirname, ".."), path.join(resolve.context, resolve.request))
                 let fullPath
                 if (fs.existsSync(filePath + ".ts")){
                     fullPath = filePath + ".ts"
@@ -76,26 +77,43 @@ class ClearSourcePlugin {
                 for (const chunk of compilation.chunks) {
                     for (const file of chunk.files) {
                         compilation.updateAsset(file, old => {
-
                             const fileName = file.split(".").shift()
-
-
 
                             let comments = {}
                             comments[fileName] = this.#getSourceString(fileName)
-                            
-                            if(!this.#dependencies[fileName]){
-                                for (const dependency of this.#dependencies[fileName]){
-                                    comments[fileName] = this.#getSourceString(dependency)
+
+
+                            if(this.#dependencies[fileName]){
+                                console.log(fileName)
+                                console.log(this.#dependencies)
+                                const dependencies = Array.from(this.#dependencies[fileName])
+                                console.log(dependencies)
+                                while (dependencies.length > 0){
+                                    const dependency = dependencies.pop()
+                                    console.log("Resolving " + dependency)
+
+                                    if (comments[dependency]){
+                                        continue
+                                    }
+
+                                    comments[dependency] = this.#getSourceString(dependency)
+                                    const dependencyFileName = dependency.split("\\").pop().replace(".ts", "")
+                                    console.log(dependencyFileName)
+                                    if (this.#dependencies[dependencyFileName]){
+                                        console.log("Adding deps")
+                                        console.log(this.#dependencies[dependencyFileName])
+                                        for (const recDep of this.#dependencies[dependencyFileName]){
+                                            dependencies.push(recDep)
+                                        }
+                                    }
+                                    console.log(dependencies)
                                 }
                             }
 
-                            let commentString = this.#compress ?
-                                "\n /*Source Code LZString compressed, Base64 encoded \n" + LZString.compressToBase64(JSON.stringify(comments))  + "\n*/" :
-                                "\n /*\n" + JSON.stringify(comments) + "\n*/"
+                            let commentString = "\n /*Source Code LZString compressed, Base64 encoded \n" + LZString.compressToBase64(JSON.stringify(comments, undefined, 4))  + "\n*/"
 
                             if (comments){
-                                return  new ConcatSource(old,commentString )
+                                return  new ConcatSource(old, commentString)
                             }
                             return old
 
