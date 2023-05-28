@@ -196,7 +196,7 @@ jobs:
       with:
         commit_message: Automated Webpack Build
 ```
-With this you should consider adding `/dist/` to your `.gitignore` 
+With this you should consider adding `dist/**/*` to your .git exclude.
 
 ___
 ## Additional Resources
