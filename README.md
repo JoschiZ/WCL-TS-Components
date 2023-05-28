@@ -11,6 +11,8 @@ This project is **not** affiliated with the Warcraft Logs Team!
 - Creates export strings for you to easily share components with others
 - File watcher for a faster write - test cycle
 - Automatically tests your component in WCL using Puppeteer
+- Import Markdown files directly into your component
+- [Github Action Example](#github-actions-example-not-included-in-template) to run a webpack build directly in your repo
 
 
 ## How to use
@@ -149,7 +151,52 @@ module.exports = {
 }
 ```
 
+___
+### Github Actions Example (Not included in template!)
+You can automate a webpack build on your github repo to ensure that `dist` ist always up to date.
 
+The following action will run webpack and rebuild your components after each push and directly commit the result to your repo.
+```yaml
+# /.github/workflows/webpack.yml
+name: NodeJS with Webpack
+
+on:
+  push:
+    branches: [ "main" ]
+    # Run on pushed to main, if a .ts or .js file was changed, but not in the dist folder!
+    paths:
+      - "*.ts"
+      - "*.js"
+      - "!dist/**/*"
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: 16
+
+    - name: Build
+      run: |
+        npm install
+        npx webpack --no-watch
+
+    - name: Commit to repo
+      uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        commit_message: Automated Webpack Build
+```
+With this you should consider adding `/dist/` to your `.gitignore` 
 
 ___
 ## Additional Resources
