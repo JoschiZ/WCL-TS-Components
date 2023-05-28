@@ -96,7 +96,8 @@ You can set static ids and individual width and heights in the [template config]
 ___
 ### Source Code
 By default, your full LZString compressed, Base64 encoded typescript source code is appended as comments to your export.
-You can choose not to compress your source, by setting `TemplateConfig.pligins.clearSource.compress` to `false`.
+This is done by the [ClearSourcePlugin](plugins/ClearSourcePlugin.js).
+Because of issues with correctly escaping comments, currently only the compressed variant is supported.
 
 ___
 ### Types
@@ -107,6 +108,20 @@ This file is a concatenation of the original definition files `chart.d.ts`, `war
 You can import them directly in your TS code 
 ```ts
 import type {RpgLogs} from "../definitions/RpgLogs";
+```
+
+___
+### Markdown
+You can write Markdown in external `.md` files and directly import them into your typescript source.
+The content of those files will be included in the transpiled `.component.js` as a raw string
+
+```ts
+import markdown from "path/to/your/markdown.md"
+import {RpgLogs} from "./RpgLogs";
+
+export default getComponent => {
+    return markdown
+}
 ```
 
 ___
@@ -138,7 +153,7 @@ module.exports = {
 
 ___
 ## Additional Resources
-- More help regarding components can be found in the [help articles](https://articles.warcraftlogs.com/help/what-are-report-components).
+- More help regarding components can be found in the [help articles](https:/n/articles.warcraftlogs.com/help/what-are-report-components).
 - Report components are currently in their closed alpha you can sign up here https://forms.gle/oFcWCMbgqDK2j2e69.
 - You can get more help regarding components on the [Warcraft Logs Discord](https://discord.gg/5ebPJSsy5y).
 
