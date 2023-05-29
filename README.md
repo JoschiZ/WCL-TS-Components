@@ -165,8 +165,8 @@ on:
     branches: [ "main" ]
     # Run on pushed to main, if a .ts or .js file was changed, but not in the dist folder!
     paths:
-      - "*.ts"
-      - "*.js"
+      - "**.ts"
+      - "**.js"
       - "!dist/**/*"
 
 
@@ -196,7 +196,6 @@ jobs:
       with:
         commit_message: Automated Webpack Build
 ```
-With this you should consider adding `dist/**/*` to your .git exclude.
 
 ___
 ## Additional Resources
