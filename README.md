@@ -140,6 +140,7 @@ You need to set up your login method in the [template config](template.config.js
 module.exports = {
     plugins: {
         autoTest: {
+            active: true // this can be used as a flag to quickly enable or disable testing whithout deleting the other 
             //Login using Battlenet Europe
             loginMethod: "EUROPE",
             components: {
@@ -150,6 +151,8 @@ module.exports = {
     }
 }
 ```
+
+Note that currently working with multiple components at the same time only partially works, since webpack currently emits all ressources instead of only ones that changed.
 
 ___
 ### Github Actions Example (Not included in template!)

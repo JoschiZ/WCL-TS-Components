@@ -27,7 +27,7 @@ function createPluginArray(){
     if (templateConfig.plugins.clearSource){
         plugins.push(new ClearSourcePlugin(templateConfig.plugins.clearSource))
     }
-    if (templateConfig.plugins.autoTest){
+    if (templateConfig.plugins.autoTest && templateConfig.plugins.autoTest.active){
         plugins.push(new AutoTestPlugin(templateConfig.plugins.autoTest))
     }
     if (templateConfig.plugins.exportString){

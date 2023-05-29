@@ -16,6 +16,7 @@ interface TemplateConfig {
 }
 
 interface AutoTestPluginOption {
+    active: boolean
     loginMethod: "WCL" | "USA" | "EUROPE" | "KOREA" | "TAIWAN"
     /**This url has to lead directly to the component view (ends with &view=components)*/
     components: {[componentName: string]: string}
