@@ -1,5 +1,7 @@
 const puppeteer = require("puppeteer");
 const {inspect} = require("util");
+const path = require("path");
+const fs = require("fs");
 require('dotenv').config({path: ".env"});
 
 
@@ -11,12 +13,39 @@ class AutoTestPlugin {
     options
 
     /**
+     * @type {Record<string, number>}
+     */
+    componentCache= {}
+
+    /**
      * @param options {import("../definitions/template").AutoTestPluginOption}
      */
     constructor(options) {
         this.options = options
         this.setupTestingBrowser().then(browser => this.browser = browser)
+
+        const tempPath = path.resolve(__dirname, "tmp/fileHashes.json")
+        if (fs.existsSync(tempPath)){
+            const cache = fs.readFileSync(tempPath)
+            this.componentCache = JSON.parse(cache)
+        }
+
     }
+
+    cyrb53(str, seed = 0){
+        let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+        for(let i = 0, ch; i < str.length; i++) {
+            ch = str.charCodeAt(i);
+            h1 = Math.imul(h1 ^ ch, 2654435761);
+            h2 = Math.imul(h2 ^ ch, 1597334677);
+        }
+        h1  = Math.imul(h1 ^ (h1 >>> 16), 2246822507);
+        h1 ^= Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+        h2  = Math.imul(h2 ^ (h2 >>> 16), 2246822507);
+        h2 ^= Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+
+        return 4294967296 * (2097151 & h2) + (h1 >>> 0);
+    };
 
     apply(compiler) {
         compiler.hooks.assetEmitted.tapAsync("AutoTestPlugin", (file, {content}, callback) => {
@@ -26,9 +55,24 @@ class AutoTestPlugin {
                 return
             }
 
+            const code = new TextDecoder().decode(content)
+            const hash = this.cyrb53(code)
+            if (this.componentCache[componentName] && this.componentCache[componentName] === hash){
+                return;
+            }
+
+            this.componentCache[componentName] = hash
+            const folder = path.resolve(__dirname, "tmp")
+
+            if (!fs.existsSync(folder)){
+                fs.mkdirSync(folder);
+            }
+
+            const ws = fs.createWriteStream(path.join(folder, "/fileHashes.json"))
+            ws.write(JSON.stringify(this.componentCache))
 
             this.getTestingPage(this.browser, componentName).then((page) => {
-                this.runCode(page, new TextDecoder().decode(content)).then(() => {
+                this.runCode(page, code).then(() => {
                         callback()
                     }
                 ).catch(() => {
