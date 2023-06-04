@@ -5,7 +5,18 @@ module.exports = {
             compress: true
         },
         exportString: true,
-        autoTest: false
+        autoTest: {
+            active: false,
+            loginMethod: "WCL",
+            components: {
+                exampleComponent: "https://www.warcraftlogs.com/reports/YNFngZby4zpWmvfC#fight=5&view=components"
+            }
+        },
+        banner: {
+            active: true,
+            banner: "Created using the WCL-TS-Components Template https://github.com/JoschiGrey/WCL-TS-Components",
+            include: /-*\.js/
+        }
     },
     components: {
         exampleComponent: {
@@ -13,4 +24,5 @@ module.exports = {
             w: 2
         }
     },
+    watch: true
 }

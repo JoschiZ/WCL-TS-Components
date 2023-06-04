@@ -38,10 +38,10 @@ function createPluginArray(){
     }
     plugins.push(new WCLCompatibilityPlugin())
 
-    plugins.push(new webpack.BannerPlugin({
-        banner: "Created using the WCL-TS-Components Template https://github.com/JoschiGrey/WCL-TS-Components \n",
-        include: /-*\.js/
-    }))
+    if (templateConfig.plugins.banner && templateConfig.plugins.banner.active !== false){
+        plugins.push(new webpack.BannerPlugin(templateConfig.plugins.banner))
+    }
+
 
 
 
@@ -85,7 +85,7 @@ module.exports = {
         },
         globalObject: "globalThis",
     },
-    watch: true,
+    watch: templateConfig.watch,
     watchOptions: {
         aggregateTimeout: 400
     },
