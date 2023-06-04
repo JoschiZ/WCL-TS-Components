@@ -5,21 +5,26 @@ interface TemplateConfig {
     plugins: {
         clearSource?: false | ClearSourcePluginOptions
         exportString?: boolean
-        autoTest?: false | AutoTestPluginOption
+        autoTest?: false | AutoTestPluginOption & {active: boolean},
+        banner?: false | import("webpack/types.d.ts").BannerPlugin["options"] & {/**Can be used to deactivate the plugin without deleting our config*/active?: boolean}
     },
     /**
      * This allows to assign individual sizes or static ids to your components.
      * It takes the component name (The file name without any endings).
      */
-    components: {[componentName: string]: Omit<Component, "component">},
+    components: Record<string, Omit<Component, "component">>,
+
+    /**
+     * Controls the Webpack watcher
+     */
+    watch: boolean
 
 }
 
 interface AutoTestPluginOption {
-    active: boolean
     loginMethod: "WCL" | "USA" | "EUROPE" | "KOREA" | "TAIWAN"
     /**This url has to lead directly to the component view (ends with &view=components)*/
-    components: {[componentName: string]: string}
+    components: Record<string, string>
 }
 
 interface ClearSourcePluginOptions {

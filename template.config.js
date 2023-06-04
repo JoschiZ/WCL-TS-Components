@@ -5,7 +5,12 @@ module.exports = {
             compress: true
         },
         exportString: true,
-        autoTest: false
+        autoTest: false,
+        banner: {
+            active: true,
+            banner: "Created using the WCL-TS-Components Template https://github.com/JoschiGrey/WCL-TS-Components",
+            include: /-*\.js/
+        }
     },
     components: {
         exampleComponent: {
@@ -13,4 +18,5 @@ module.exports = {
             w: 2
         }
     },
+    watch: true
 }
