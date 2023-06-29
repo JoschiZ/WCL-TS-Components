@@ -12,10 +12,12 @@ module.exports = {
                 exampleComponent: "https://www.warcraftlogs.com/reports/YNFngZby4zpWmvfC#fight=5&view=components"
             }
         },
-        banner: {
+        bannerPlugin: {
             active: true,
-            banner: "Created using the WCL-TS-Components Template https://github.com/JoschiGrey/WCL-TS-Components",
-            include: /-*\.js/
+            options: {
+                banner: "Created using the WCL-TS-Components Template https://github.com/JoschiGrey/WCL-TS-Components",
+                include: /-*\.js/
+            }
         }
     },
     components: {

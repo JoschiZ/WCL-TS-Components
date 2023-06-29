@@ -6,7 +6,7 @@ interface TemplateConfig {
         clearSource?: false | ClearSourcePluginOptions
         exportString?: boolean
         autoTest?: false | AutoTestPluginOption & {active: boolean},
-        banner?: false | import("webpack/types.d.ts").BannerPlugin["options"] & {/**Can be used to deactivate the plugin without deleting our config*/active?: boolean}
+        bannerPlugin?: false | BannerPluginOptions
     },
     /**
      * This allows to assign individual sizes or static ids to your components.
@@ -19,6 +19,11 @@ interface TemplateConfig {
      */
     watch: boolean
 
+}
+
+interface BannerPluginOptions {
+    active: boolean,
+    options: import("webpack/types.d.ts").BannerPlugin["options"]
 }
 
 interface AutoTestPluginOption {

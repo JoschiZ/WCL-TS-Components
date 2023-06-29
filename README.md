@@ -148,6 +148,8 @@ module.exports = {
 
 Note that currently working with multiple components at the same time only partially works, since webpack currently emits all ressources instead of only ones that changed.
 
+Passing `--env=noTest` as a cli parameter will superseed the webpack config and not start the test plugin even if enabled.
+
 ___
 ### Github Actions Example (Not included in template!)
 You can automate a webpack build on your github repo to ensure that `dist` is always up-to-date.
@@ -186,7 +188,7 @@ jobs:
     - name: Build
       run: |
         npm install
-        npx webpack --no-watch
+        npx webpack --no-watch --env=noTest
 
     - name: Commit to repo
       uses: stefanzweifel/git-auto-commit-action@v4
