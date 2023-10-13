@@ -198,7 +198,7 @@ jobs:
 
 ___
 ## Additional Resources
-- More help regarding components can be found in the [help articles](https:/n/articles.warcraftlogs.com/help/what-are-report-components).
+- More help regarding components can be found in the [help articles](https://articles.warcraftlogs.com/help/what-are-report-components).
 - Report components are currently in their closed alpha you can sign up here https://forms.gle/oFcWCMbgqDK2j2e69.
 - You can get more help regarding components on the [Warcraft Logs Discord](https://discord.gg/5ebPJSsy5y).
 - The scripting logs API documentation is found [here](https://www.warcraftlogs.com/scripting-api-docs/warcraft/modules/RpgLogs.html).
