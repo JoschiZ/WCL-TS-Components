@@ -1,4 +1,5 @@
-import type {RpgLogs} from "../../definitions/RpgLogs";
+import {RpgLogs} from "../../definitions/RpgLogs";
+import {EventTypeUnions} from "../../definitions/Template";
 
 /**
  * The wrappers are purely for typing convenience instead of modifying the original definitions file.
@@ -32,28 +33,3 @@ export function allEventsByCategoryAndDisposition<T extends RpgLogs.EventCategor
     return fight.allEventsByCategoryAndDisposition(category, disposition) as unknown as ReadonlyArray<EventTypeUnions<T>>
 }
 
-type ApplyBuffOrDebuff = RpgLogs.ApplyBuffEvent | RpgLogs.ApplyDebuffEvent
-type RemoveBuffOrDebuff = RpgLogs.RemoveBuffEvent | RpgLogs.RemoveDebuffEvent
-type RemoveBuffOrDebuffStack = RpgLogs.RemoveBuffStackEvent | RpgLogs.RemoveDebuffStackEvent
-type ApplyBuffOrDebuffStack = RpgLogs.ApplyBuffStackEvent | RpgLogs.ApplyDebuffStackEvent
-type RefreshBuffOrDebuff = RpgLogs.RefreshBuffEvent | RpgLogs.RefreshDebuffEvent
-type BuffOrDebuffEvents = ApplyBuffOrDebuff | RemoveBuffOrDebuff | ApplyBuffOrDebuffStack | RemoveBuffOrDebuffStack | RefreshBuffOrDebuff
-
-
-type EventTypeUnions<T extends RpgLogs.EventCategory> =
-    T extends "damage" ? RpgLogs.DamageEvent :
-        T extends "healing"? RpgLogs.HealingEvent | RpgLogs.AbsorbedEvent | RpgLogs.RemoveBuffEvent:
-            T extends "casts" ? RpgLogs.CastEvent | RpgLogs.BeginCastEvent:
-                T extends "aurasGained" ? BuffOrDebuffEvents:
-                    T extends "aurasCast" ? BuffOrDebuffEvents:
-                        T extends "interrupts" ? RpgLogs.InterruptEvent:
-                            T extends "resourceGain" ? RpgLogs.ResourceChangeEvent:
-                                T extends "dispels" ? RpgLogs.DispelEvent:
-                                    T extends "deathsAndResurrects" ? RpgLogs.DeathEvent | RpgLogs.DestroyEvent | RpgLogs.InstakillEvent:
-                                        T extends "summons" ? RpgLogs.SummonEvent:
-                                            T extends "combatResurrects" ? RpgLogs.ResurrectEvent:
-                                                T extends "healingAbsorbed" ? RpgLogs.HealAbsorbedEvent:
-                                                    T extends  "aggro" ? RpgLogs.ApplyDebuffEvent | RpgLogs.CastEvent | RpgLogs.DeathEvent:
-                                                        T extends "calculatedDamage" ? RpgLogs.DamageEvent:
-                                                            T extends "calculatedHealing" ?  RpgLogs.HealingEvent | RpgLogs.AbsorbedEvent | RpgLogs.RemoveBuffEvent:
-                                                                RpgLogs.AnyEvent;
