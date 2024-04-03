@@ -41,7 +41,7 @@ declare global {
      * @param params - The parameters to pass to getComponent.
      * @returns The component that will be used.
      */
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let getComponent: (params?: any) => RpgLogs.Component | object | string | Array<unknown> | number;
 
     /**
@@ -429,7 +429,7 @@ export namespace RpgLogs {
          * @param actor - The player to fetch the spec for.
          * @returns - The spec of the actor
          */
-        specForPlayer(actor: Actor): number;
+        specForPlayer(actor: Actor): string;
 
         /**
          * The instance count for a given actor.

@@ -58,6 +58,7 @@ class AutoTestPlugin {
             const code = new TextDecoder().decode(content)
             const hash = this.cyrb53(code)
             if (this.componentCache[componentName] && this.componentCache[componentName] === hash){
+                callback()
                 return;
             }
 
@@ -151,7 +152,6 @@ class AutoTestPlugin {
         const browser = await puppeteer.launch({headless: false});
         const page = await browser.newPage();
         await page.goto('https://www.warcraftlogs.com/login');
-        await page.click("#qc-cmp2-ui > div.qc-cmp2-footer.qc-cmp2-footer-overlay.qc-cmp2-footer-scrolled > div > button:nth-child(2)")
 
         await page.setViewport({width: 1080, height: 1024});
 
