@@ -41,7 +41,7 @@ declare global {
      * @param params - The parameters to pass to getComponent.
      * @returns The component that will be used.
      */
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let getComponent: (params?: any) => RpgLogs.Component | object | string | Array<unknown> | number;
 
     /**
