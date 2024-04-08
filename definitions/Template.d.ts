@@ -5,9 +5,9 @@ interface TemplateConfig {
      * Config options for the included custom plugins. Omitting a plugin or assigning a falsy value will deactivate it.
      */
     plugins: {
-        clearSource?: false | ClearSourcePluginOptions
-        exportString?: boolean
-        autoTest?: false | AutoTestPluginOption,
+        clearSource?: false | ClearSourcePluginOptions,
+        exportString?: boolean,
+        autoTest?: false | AutoTestPluginOption & {active: boolean},
         bannerPlugin?: false | BannerPluginOptions
     },
     /**

@@ -32,4 +32,3 @@ export function eventsByCategoryAndDisposition<T extends RpgLogs.EventCategory>(
 export function allEventsByCategoryAndDisposition<T extends RpgLogs.EventCategory>(fight: RpgLogs.Fight, category: T, disposition: RpgLogs.ActorDisposition): ReadonlyArray<EventTypeUnions<T>>  {
     return fight.allEventsByCategoryAndDisposition(category, disposition) as unknown as ReadonlyArray<EventTypeUnions<T>>
 }
-
