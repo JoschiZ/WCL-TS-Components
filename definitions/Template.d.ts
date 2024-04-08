@@ -1,4 +1,4 @@
-import {RpgLogs} from "./RpgLogs";
+import { RpgLogs } from "./RpgLogs";
 
 interface TemplateConfig {
     /**
@@ -7,7 +7,8 @@ interface TemplateConfig {
     plugins: {
         clearSource?: false | ClearSourcePluginOptions
         exportString?: boolean
-        autoTest?: false | AutoTestPluginOption
+        autoTest?: false | AutoTestPluginOption,
+        bannerPlugin?: false | BannerPluginOptions
     },
     /**
      * This allows to assign individual sizes or static ids to your components.
@@ -15,6 +16,16 @@ interface TemplateConfig {
      */
     components: {[componentName: string]: Omit<Component, "component">},
 
+    /**
+     * Controls the Webpack watcher
+     */
+    watch: boolean
+
+}
+
+interface BannerPluginOptions {
+    active: boolean,
+    options: import("webpack/types.d.ts").BannerPlugin["options"]
 }
 
 interface AutoTestPluginOption {
@@ -27,8 +38,9 @@ interface AutoTestPluginOption {
 interface ClearSourcePluginOptions {
     /**
      * If true the source code will be LZString compressed and Base64Encoded
+     * @deprecated This option will be ignored and resulting output will always be compressed
      */
-    compress: boolean
+    compress?: boolean
 }
 
 export interface Component {
